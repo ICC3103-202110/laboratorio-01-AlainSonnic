@@ -1,12 +1,17 @@
 #Laboratorio_1_Alain_Sonnic_leporati
 
 import random
+'''
+print("Bienvenido a MEMORIZE")
 
-print(random.randrange(10))
+print("Con Cuantas cartas desea jugar?")
 
-print("Jugador 1, ingrese su nombre:")
+numero = int(input())
 
+print(random.randrange(numero))
+'''
 
-print("Jugador 2, ingrese su nombre:")
+numero_pares = 2
 
+l=[]
 
