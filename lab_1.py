@@ -1,19 +1,22 @@
 #Laboratorio_1_Alain_Sonnic_leporati
-
+from tabulate import tabulate
 import random
+"""
 from tabulate import tabulate
 
 print("Bienvenido a MEMORIZE")
 
 print("Con Cuantas cartas desea jugar?")
 
+numero = int(input())
 numero_pares = int(input())
 
+"""
+numero_pares = 10
 
 l=[]
 
 #crear matriz
-
 def matriz(m,l):
     for i in range(2):
         l.append([])
@@ -39,18 +42,14 @@ def matriz(m,l):
             pos1,pos2=lis[o]
             l[pos1][pos2]=k
             o+=1
-                
+
+
+    print(lis)
+
+
     return l
 
 i=matriz(numero_pares,l)
 
 
-
 print(tabulate(i))
-
-
-
-
-
-
-
