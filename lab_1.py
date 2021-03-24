@@ -1,6 +1,7 @@
 #Laboratorio_1_Alain_Sonnic_leporati
 
 import random
+import time
 
 #crear matriz con los pares al azar
 
@@ -81,11 +82,62 @@ punt_2 = 0
 #cuando flag cambie a 1, se termina el juego (gana alguien)
 turno = 0
 primer_num = 0
+cartas_disc = 0
 
-while flag!=1:
+while cartas_disc<numero_pares*2:
     #turno jugador 1:
     if turno == 0:
         print("Jugador 1: ")
+        print_matriz(matriz_aster)
+        print("Indique coordenada de carta a elegir: ")
+        print("Indique los numero separados por una coma.")
+        inp = input()
+        i = inp.strip().split(",")
+        pos = []
+        for k in i:
+            pos.append(int(k))
+
+        pos1,pos2 = pos
+        matriz_aster[pos1][pos2] = matriz_cartas[pos1][pos2]
+        num1 = matriz_cartas[pos1][pos2]
+        print_matriz(matriz_aster)
+
+        print("Indique las coordenadas del segundo numero: ")
+        inp = input()
+        i = inp.strip().split(",")
+        pos_2 = []
+        for k in i:
+            pos_2.append(int(k))
+
+        pos3,pos4 = pos_2
+        matriz_aster[pos3][pos4] = matriz_cartas[pos3][pos4]
+        
+        num2 = matriz_cartas[pos3][pos4]
+        print_matriz(matriz_aster)
+        time.sleep(1)
+
+        if num1==num2:
+            print("Ganaste 1 punto!")
+            punt_1+=1
+            cartas_disc += 2
+
+            matriz_aster[pos1][pos2] = ' '
+            matriz_cartas[pos1][pos2] = ' '
+            matriz_aster[pos3][pos4] = ' '
+            matriz_cartas[pos3][pos4] = ' '
+
+            time.sleep(1)
+
+        else:
+            print("No coinciden :(")
+            matriz_aster[pos1][pos2] = '*'
+            matriz_aster[pos3][pos4] = '*'
+            turno = 1
+
+    
+    #turno jugador 2:
+    if turno == 1:
+        print("Jugador 2: ")
         print_matriz(matriz_aster)
         print("Indique coordenada de carta a elegir: ")
         print("Indique los numero separados por una coma.")
@@ -100,35 +152,40 @@ while flag!=1:
         matriz_aster[pos1][pos2] = matriz_cartas[pos1][pos2]
         num1 = matriz_cartas[pos1][pos2]
         print_matriz(matriz_aster)
+
         print("Indique las coordenadas del segundo numero: ")
         inp = input()
         i = inp.strip().split(",")
-        pos = []
+        pos_2 = []
         for k in i:
-            pos.append(int(k))
+            pos_2.append(int(k))
 
-        pos1,pos2 = pos
-        matriz_aster[pos1][pos2] = matriz_cartas[pos1][pos2]
+        pos3,pos4 = pos_2
+        matriz_aster[pos3][pos4] = matriz_cartas[pos3][pos4]
         
-        num2 = matriz_cartas[pos1][pos2]
+        num2 = matriz_cartas[pos3][pos4]
         print_matriz(matriz_aster)
+        time.sleep(1)
 
         if num1==num2:
             print("Ganaste 1 punto!")
+            punt_2+=1
+            cartas_disc += 2
 
+            matriz_aster[pos1][pos2] = ' '
+            matriz_cartas[pos1][pos2] = ' '
+            matriz_aster[pos3][pos4] = ' '
+            matriz_cartas[pos3][pos4] = ' '
 
+            time.sleep(1)
 
+        else:
+            print("No coinciden :(")
+            matriz_aster[pos1][pos2] = '*'
+            matriz_aster[pos3][pos4] = '*'
+            turno = 0
 
-
-
-        turno = 1
-
-    
-    #turno jugador 2:
-    if turno == 1:
-        print("Jugador 2: ")
-        print_matriz(matriz_aster)
-        print("Indique coordenada de carta a elegir: ")
-        print("Indique los numero separados por una coma.")
-        inp = input()
-        turno = 0
+if punt_1 >= punt_2:
+    print("Gano Jugador 1! Con",punt_1," puntos.")
+else:
+    print("Gano Jugador 2! Con",punt_2," puntos.")
