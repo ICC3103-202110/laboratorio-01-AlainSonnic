@@ -5,7 +5,7 @@ import time
 
 #crear matriz con los pares al azar
 
-def matriz(m):
+def matriz(m):  
     l=[]
     for i in range(2):
         l.append([])
@@ -45,7 +45,8 @@ def matriz_asterisco():
     return l_2
 
 
-def print_matriz(matriz):
+#imprime matriz en pantalla
+def print_matriz(matriz):        
     g="-"
     g_2=' - '
     print(g*numero_pares*3)
@@ -63,8 +64,6 @@ def print_matriz(matriz):
     
     print(g*numero_pares*3)
 
-#MAIN:
-
 print("Bienvenido a MEMORIZE")
 print("La primera coordenada corresponde al eje vertical y la segunda al eje horizontal.")
 print("Con Cuantas cartas desea jugar?")
@@ -72,18 +71,17 @@ print("Con Cuantas cartas desea jugar?")
 
 numero_pares = int(input())
 
-#numero_pares = 8
 matriz_aster=matriz_asterisco()
 matriz_cartas=matriz(numero_pares)
-flag = 0
+
 punt_1 = 0
 punt_2 = 0
 
-#cuando flag cambie a 1, se termina el juego (gana alguien)
 turno = 0
 primer_num = 0
 cartas_disc = 0
 
+#Empieza el ciclo del juego, el jugador 1 comienza hasta que falle.
 while cartas_disc<numero_pares*2:
     #turno jugador 1:
     if turno == 0:
@@ -114,12 +112,12 @@ while cartas_disc<numero_pares*2:
         
         num2 = matriz_cartas[pos3][pos4]
         print_matriz(matriz_aster)
-        time.sleep(1)
+        time.sleep(2)             #Se usa para darle aire al juego y que el jugador no se pierda en la velocidad de los prints.
 
         if num1==num2:
             print("Ganaste 1 punto!")
-            punt_1+=1
-            cartas_disc += 2
+            punt_1+=1           #puntaje se le agrega 1 punto.
+            cartas_disc += 2    #numero de cartas que se han dado vuelta.
 
             matriz_aster[pos1][pos2] = ' '
             matriz_cartas[pos1][pos2] = ' '
@@ -132,7 +130,7 @@ while cartas_disc<numero_pares*2:
             print("No coinciden :(")
             matriz_aster[pos1][pos2] = '*'
             matriz_aster[pos3][pos4] = '*'
-            turno = 1
+            turno = 1             #si turno ==1, le toca al jugador 2.
 
     
     #turno jugador 2:
@@ -177,7 +175,7 @@ while cartas_disc<numero_pares*2:
             matriz_aster[pos3][pos4] = ' '
             matriz_cartas[pos3][pos4] = ' '
 
-            time.sleep(1)
+            time.sleep(2)            #para que el jugador no se pierda
 
         else:
             print("No coinciden :(")
